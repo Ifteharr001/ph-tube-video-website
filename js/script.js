@@ -9,8 +9,8 @@ const handleCatagory = async () => {
     console.log(dataContainer)
     dataContainer.forEach((catagory) =>{
         const div = document.createElement('div');
-        div.innerHTML = `
-            <a onclick="handleTubeLoad('${catagory.category_id}')" class="tab">${catagory.category}</a>
+        div.innerHTML = ` 
+            <a onclick="handleTubeLoad('${catagory.category_id}')" class="tab text-black text-[15px] gap-4">${catagory.category}</a>
         `;
         tabContainer.appendChild(div)
     });
