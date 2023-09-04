@@ -20,6 +20,40 @@ const handleTubeLoad = async (catagoryId) => {
     `https://openapi.programming-hero.com/api/videos/category/${catagoryId}`
   );
   const data = await response.json();
-  console.log(data)
+  const dataCardContainer = data.data;
+
+  const cardContainer = document.getElementById('card-container');
+
+  cardContainer.innerHTML = "";
+
+  dataCardContainer.forEach((card) => {
+    console.log(card)
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="card bg-base-100 shadow-xl rounded-none">
+        <figure>
+          <img class="h-[200px]"
+            src=${card?.thumbnail}
+          />
+        </figure>
+        <div>
+            <div class="flex">
+                <div>
+                    <div class="w-10">
+                        <img class="rounded-full h-[40px] w-[100px] m-[15px]" src="${card?.authors[0]?.profile_picture}" alt="">
+                    </div>
+                </div>
+                <div class="p-[15px] ml-[15px]">
+                    <h1 class="text-xl text-bold">${card.title}</h1>
+                    <span>${card?.authors[0]?.profile_name}</span>
+                    <p>views: ${card?.others?.views}</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    `;
+    cardContainer.appendChild(div)
+  })
 };
-handleCatagory()
+handleCatagory();
+handleTubeLoad(1000)
